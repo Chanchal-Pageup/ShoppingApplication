@@ -36,13 +36,13 @@ namespace ShopOnline.Api.Repositories
                 Login login = this.GetLogin(loginDto.Email);
 
                 if (login is null)
-                    return (null, ReponseCode.LoginNotFound);
+                    return (null, ResponseCode.LoginNotFound);
 
                 if (!VerifyPasswordHash(loginDto.Password, login.PasswordHash, login.PasswordSalt))
-                    return (null, ReponseCode.PasswordIncorrect);
+                    return (null, ResponseCode.PasswordIncorrect);
 
                 if (login.IsActive == false)
-                    return (null, ReponseCode.LoginDeactivated);
+                    return (null, ResponseCode.LoginDeactivated);
 
                 User? user = await dbContext.Users.FindAsync(login.UserId);
 
@@ -51,9 +51,9 @@ namespace ShopOnline.Api.Repositories
 
                 // TODO: Uncomment these if applicable.
                 //if (employee is null)
-                //    return await Task.FromResult(ReponseCode.EmployeeNotFound);
+                //    return await Task.FromResult(ResponseCode.EmployeeNotFound);
                 //else if (!employee.IsActive)
-                //    return await Task.FromResult(ReponseCode.EmployeeDeactivated);
+                //    return await Task.FromResult(ResponseCode.EmployeeDeactivated);
 
                 // TODO: Pass here employee object if needed.
                 var token = CreateToken(new Login
@@ -76,7 +76,7 @@ namespace ShopOnline.Api.Repositories
                     };
                 }
 
-                return (loginResponse, ReponseCode.LoginSuccess);
+                return (loginResponse, ResponseCode.LoginSuccess);
             }
             catch (Exception ex)
             {
