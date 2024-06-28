@@ -1,19 +1,18 @@
-﻿using ShopOnline.Models.Dtos;
+﻿using ShopOnline.Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiBase.Contract.Entities
+namespace ShopOnline.Models.Dtos
 {
-    public class User : EntityBase
+    public class UserDto
     {
+        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
-        public string? Contact { get; set; }
-        public string? Address { get; set; }
+        public UserType? UserTypeId { get; set; }
     }
 }

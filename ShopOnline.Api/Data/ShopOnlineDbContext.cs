@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApiBase.Contract.Entities;
+using Microsoft.EntityFrameworkCore;
 using ShopOnline.Api.Entities;
 
 namespace ShopOnline.Api.Data
@@ -312,15 +313,23 @@ namespace ShopOnline.Api.Data
 				Name = "Shoes",
 				IconCSS = "fas fa-shoe-prints"
 			});
+            modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory
+            {
+                Id = 5,
+                Name = "Men",
+                IconCSS = "fas fa-cloth"
+            });
 
 
-		}
+        }
 
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Login> Logins { get; set; }
+		public DbSet<User> Users { get; set; }
+
 
     }
 }
